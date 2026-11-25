@@ -3,13 +3,13 @@
 // Ord mellem _understregninger_ i overskrifter sættes i kursiv (se components/toemrer/Tekst.tsx).
 
 export const firma = {
-  navn: "Bøgely Tømrer & Snedker",
-  kortNavn: "Bøgely",
+  navn: "Egebyg Tømrer & Snedker",
+  kortNavn: "Egebyg",
   undertitel: "Tømrer & Snedker",
   by: "Silkeborg",
   omraade: "Silkeborg og omegn",
   telefon: "12 34 56 78", // fiktivt nummer, ring-knappen viser en demobesked
-  mail: "kontakt@boegely-demo.dk",
+  mail: "kontakt@egebyg-demo.dk",
   adresse: "Værkstedsvej 1, 8600 Silkeborg",
   cvr: "00000000",
   aabent: [
@@ -101,9 +101,9 @@ export const proces = [
 ];
 
 export const omFirmaet = {
-  overlinje: "Om Bøgely",
+  overlinje: "Om Egebyg",
   udsagn:
-    "Bøgely er et familiefirma med fem tømrere og en lærling. Vi har bygget tage, tilbygninger og køkkener i Silkeborg siden 2004.",
+    "Egebyg er et familiefirma med fem tømrere og en lærling. Vi har bygget tage, tilbygninger og køkkener i Silkeborg siden 2004.",
   tekst: "Du har den samme kontaktperson fra første besøg til sidste skrue, og vi siger det ærligt, hvis noget ikke kan betale sig.",
   billede: "om-mester.jpg",
   tal: [
