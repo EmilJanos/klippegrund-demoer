@@ -10,6 +10,9 @@ export default function Oversigt() {
         <li>
           <Link href="/toemrer">Demo 1: tømrer</Link>
         </li>
+        <li>
+          <Link href="/frisoer">Demo 2: frisør</Link>
+        </li>
       </ul>
     </main>
   );
