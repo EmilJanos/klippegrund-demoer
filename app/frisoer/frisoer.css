@@ -2604,3 +2604,23 @@ body:has(.fr) {
     translate: none;
   }
 }
+
+/* Baggrund bag hele siden: mørkt mønster med en blød bølge i højre side (Emil 25. nov.).
+   Ligger fast, mens indholdet ruller hen over. */
+.fr {
+  position: relative;
+  isolation: isolate;
+}
+
+.fr::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("/frisoer/billeder/baggrund.webp") right center / cover no-repeat;
+  pointer-events: none;
+}
+/* Stående udgave af mønsteret til mobil, så bølgen ikke bliver forstørret. */
+@media (max-aspect-ratio: 1/1) {
+  .fr::before { background-image: url("/frisoer/billeder/baggrund-mobil.webp"); }
+}
