@@ -3,6 +3,7 @@ import DemoRing from "@/components/toemrer/DemoRing";
 import KontaktFormular from "@/components/toemrer/KontaktFormular";
 import { Kursiv } from "@/components/toemrer/Tekst";
 import { firma, kontaktEmner, sider } from "@/lib/toemrer";
+import Foto from "@/components/toemrer/Foto";
 
 export const metadata: Metadata = { title: "Kontakt" };
 
@@ -60,6 +61,12 @@ export default async function Kontakt({ searchParams }: { searchParams: Promise<
           </div>
           <div className="tm-kontakt-form tm-ind" style={i(3)}>
             <KontaktFormular emner={kontaktEmner} forvalgt={emne} />
+          </div>
+        </div>
+        {/* Bredt værkstedsfoto under formularen (Emil 25. nov.) */}
+        <div className="tm-indhold">
+          <div className="tm-billede tm-kontakt-foto tm-form-skraasnit" data-vis>
+            <Foto fil="kontakt.jpg" alt="Tømrer stemmer en tap ud i en egebjælke" />
           </div>
         </div>
       </section>

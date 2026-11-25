@@ -50,7 +50,7 @@ export default function ToemrerForside() {
               </Link>
             </div>
           </div>
-          <div className="tm-hero-medie tm-billede">
+          <div className="tm-hero-medie tm-billede tm-form-braedder">
             {heroVideo ? (
               <HeroVideo src={heroVideo} plakat={heroSrc} />
             ) : (
@@ -136,7 +136,7 @@ export default function ToemrerForside() {
               ))}
             </div>
           </div>
-          <div className="tm-om-foto tm-billede" data-vis>
+          <div className="tm-om-foto tm-billede tm-form-forskudt" data-vis>
             <Foto fil={omFirmaet.billede} alt="Tømrermesteren i værkstedet" tone="valnoed" />
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function ToemrerForside() {
           <div className="tm-galleri">
             {projekter.slice(0, 4).map((p, n) => (
               <figure key={p.titel} className="tm-projekt" data-vis style={d(n % 2)}>
-                <div className="tm-billede tm-billede-4-3">
+                <div className={`tm-billede tm-billede-4-3${p.form ? ` tm-form-${p.form}` : ""}`}>
                   <Foto fil={p.billede} alt={p.titel} />
                 </div>
                 <figcaption>

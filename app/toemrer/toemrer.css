@@ -2051,3 +2051,127 @@ main:not(:has(.tm-afslutning)) + .tm-footer .tm-footer-gitter {
     transition: none !important;
   }
 }
+
+/* Kontakt: bredt værkstedsfoto under formularen (Emil 25. nov.) */
+.tm-kontakt-foto {
+  margin-top: clamp(48px, 7vw, 104px);
+  aspect-ratio: 16 / 7;
+}
+
+.tm-kontakt-foto > img {
+  object-position: 50% 30%;
+}
+
+@media (max-width: 760px) {
+  .tm-kontakt-foto {
+    aspect-ratio: 4 / 3;
+  }
+
+  .tm-kontakt-foto > img {
+    object-position: 62% 30%;
+  }
+}
+
+/* Ydelser, mindre opgaver: listen i to kolonner til venstre og værkstedsfotoet til højre (Emil 25. nov.) */
+.tm-ogsaa-gitter {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 40px 24px;
+  align-items: start;
+}
+
+.tm-ogsaa-gitter .tm-ogsaa {
+  grid-column: 1 / 8;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.tm-ogsaa-foto {
+  grid-column: 9 / 13;
+  aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 900px) {
+  .tm-ogsaa-gitter .tm-ogsaa,
+  .tm-ogsaa-foto {
+    grid-column: 1 / -1;
+  }
+
+  .tm-ogsaa-foto {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 700px) {
+  .tm-ogsaa-gitter .tm-ogsaa {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Billedformer på de store billeder (Emils valg 25. nov.): brædder på hero-videoen, forskudt snit på Om-fotoet,
+   liggende høvlspån på værkstedet og skråsnit på Kontakt-fotoet. Gitre og før/efter-skyderen er stadig firkantede.
+   Skitser af alle 18 former ligger i Kunder/design skabeloner/billedformer. */
+
+/* Tre forskudte brædder med luft imellem. Lavet som maske, så heroens åbne-animation (clip-path) stadig virker. */
+.tm-form-braedder {
+  --brat: 31.6%;
+  --hoejde: 92%;
+  background: none;
+}
+
+/* Masken sidder på selve videoen/fotoet, så skiltet og pauseknappen ikke bliver skåret over */
+.tm-form-braedder > video,
+.tm-form-braedder > picture > img,
+.tm-form-braedder > img {
+  -webkit-mask:
+    linear-gradient(#000 0 0) left bottom / var(--brat) var(--hoejde) no-repeat,
+    linear-gradient(#000 0 0) center top / var(--brat) var(--hoejde) no-repeat,
+    linear-gradient(#000 0 0) right bottom / var(--brat) var(--hoejde) no-repeat;
+  mask:
+    linear-gradient(#000 0 0) left bottom / var(--brat) var(--hoejde) no-repeat,
+    linear-gradient(#000 0 0) center top / var(--brat) var(--hoejde) no-repeat,
+    linear-gradient(#000 0 0) right bottom / var(--brat) var(--hoejde) no-repeat;
+}
+
+/* Mobil: brædderne er smalle, så skiltet ligger på tværs i bunden og pauseknappen rykker op i højre bræt */
+@media (max-width: 760px) {
+  .tm-form-braedder .tm-hero-skilt {
+    left: 50%;
+    bottom: 12px;
+    max-width: none;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: var(--hvid);
+  }
+
+  .tm-form-braedder .tm-videoknap {
+    top: calc(8% + 12px);
+    bottom: auto;
+  }
+}
+
+/* To halvdele skåret over på skrå og skubbet lidt fra hinanden. Linjen mellem de to dele går frem og tilbage ad samme vej, så den ikke kan ses. */
+.tm-form-forskudt {
+  border-radius: 0;
+  clip-path: polygon(0 0, 59.53% 0, 38.53% 94%, 0 94%, 0 0, 61.47% 6%, 100% 6%, 100% 100%, 40.47% 100%, 61.47% 6%, 0 0);
+}
+
+/* Høvlspån: den store bue sidder øverst til højre */
+.tm-form-hoevlspaan {
+  border-radius: 0 46% 0 0 / 0 62% 0 0;
+}
+
+/* Høvlspån lagt ned: den store bue sidder nederst til højre */
+.tm-form-hoevlspaan-liggende {
+  border-radius: 0 0 46% 0 / 0 0 62% 0;
+}
+
+.tm-form-skraasnit {
+  border-radius: 0;
+  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+}
+
+@media (max-width: 760px) {
+  .tm-form-skraasnit {
+    clip-path: polygon(11% 0, 100% 0, 89% 100%, 0 100%);
+  }
+}

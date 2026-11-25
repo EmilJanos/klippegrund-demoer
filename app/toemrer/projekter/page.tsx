@@ -32,7 +32,7 @@ export default function Projekter() {
           <div className="tm-galleri">
             {projekter.map((p, n) => (
               <figure key={p.titel} className="tm-projekt" data-vis style={{ ["--d" as string]: n % 2 }}>
-                <div className="tm-billede tm-billede-4-3">
+                <div className={`tm-billede tm-billede-4-3${p.form ? ` tm-form-${p.form}` : ""}`}>
                   <Foto fil={p.billede} alt={p.titel} />
                 </div>
                 <figcaption>

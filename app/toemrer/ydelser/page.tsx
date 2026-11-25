@@ -52,14 +52,20 @@ export default function Ydelser() {
               </h2>
             </div>
           </div>
-          <ul className="tm-ogsaa" data-vis>
-            {ogsaa.map((o, n) => (
-              <li key={o}>
-                {o}
-                <span>0{n + 1}</span>
-              </li>
-            ))}
-          </ul>
+          {/* Listen til venstre, værkstedet til højre (Emil 25. nov.) */}
+          <div className="tm-ogsaa-gitter">
+            <ul className="tm-ogsaa" data-vis>
+              {ogsaa.map((o, n) => (
+                <li key={o}>
+                  {o}
+                  <span>0{n + 1}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="tm-billede tm-ogsaa-foto tm-form-hoevlspaan-liggende" data-vis>
+              <Foto fil="vaerksted.jpg" alt="Værkstedet med maskiner og stablet træ" />
+            </div>
+          </div>
         </div>
       </section>
 

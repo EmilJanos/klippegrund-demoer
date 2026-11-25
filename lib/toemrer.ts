@@ -118,10 +118,11 @@ export const foerEfter = [
   { titel: "Køkken", foer: "koekken-foer.jpg", efter: "koekken-efter.jpg", tekst: "Køkken fra firserne skiftet til fronter og bordplade i lys eg." },
 ];
 
-export const projekter = [
-  { titel: "Reol og bænk under skråvindue", type: "Snedkerarbejde", sted: "Silkeborg", aar: 2026, billede: "projekt-1.jpg" },
-  { titel: "Nyt egetræsgulv i stue", type: "Gulv", sted: "Them", aar: 2026, billede: "projekt-2.jpg" },
-  { titel: "Carport i sort træ", type: "Udendørs", sted: "Sejs", aar: 2025, billede: "projekt-3.jpg" },
+// form: valgfri billedform (klassen tm-form-<navn> i toemrer.css). Uden form er billedet firkantet med runde hjørner.
+export const projekter: { titel: string; type: string; sted: string; aar: number; billede: string; form?: string }[] = [
+  { titel: "Reol og bænk under skråvindue", type: "Snedkerarbejde", sted: "Silkeborg", aar: 2026, billede: "projekt-1.jpg", form: "hoevlspaan" },
+  { titel: "Nyt egetræsgulv i stue", type: "Gulv", sted: "Them", aar: 2026, billede: "projekt-2.jpg", form: "braedder" },
+  { titel: "Carport i sort træ", type: "Udendørs", sted: "Sejs", aar: 2025, billede: "projekt-3.jpg", form: "skraasnit" },
   { titel: "Trappe med åbne trin i eg", type: "Snedkerarbejde", sted: "Virklund", aar: 2025, billede: "projekt-4.jpg" },
   { titel: "Nyt tag på parcelhus", type: "Tag", sted: "Kjellerup", aar: 2025, billede: "projekt-5.jpg" },
   { titel: "Havestue med glasparti", type: "Tilbygning", sted: "Silkeborg", aar: 2024, billede: "projekt-6.jpg" },
