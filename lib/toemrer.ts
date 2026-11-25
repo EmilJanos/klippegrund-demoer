@@ -119,12 +119,12 @@ export const foerEfter = [
 ];
 
 export const projekter = [
-  { titel: "Reol og bænk under skråvindue", type: "Snedkerarbejde", sted: "Silkeborg", aar: 2025, billede: "projekt-1.jpg" },
-  { titel: "Nyt egetræsgulv i stue", type: "Gulv", sted: "Them", aar: 2025, billede: "projekt-2.jpg" },
-  { titel: "Carport i sort træ", type: "Udendørs", sted: "Sejs", aar: 2024, billede: "projekt-3.jpg" },
-  { titel: "Trappe med åbne trin i eg", type: "Snedkerarbejde", sted: "Virklund", aar: 2024, billede: "projekt-4.jpg" },
-  { titel: "Nyt tag på parcelhus", type: "Tag", sted: "Kjellerup", aar: 2024, billede: "projekt-5.jpg" },
-  { titel: "Havestue med glasparti", type: "Tilbygning", sted: "Silkeborg", aar: 2023, billede: "projekt-6.jpg" },
+  { titel: "Reol og bænk under skråvindue", type: "Snedkerarbejde", sted: "Silkeborg", aar: 2026, billede: "projekt-1.jpg" },
+  { titel: "Nyt egetræsgulv i stue", type: "Gulv", sted: "Them", aar: 2026, billede: "projekt-2.jpg" },
+  { titel: "Carport i sort træ", type: "Udendørs", sted: "Sejs", aar: 2025, billede: "projekt-3.jpg" },
+  { titel: "Trappe med åbne trin i eg", type: "Snedkerarbejde", sted: "Virklund", aar: 2025, billede: "projekt-4.jpg" },
+  { titel: "Nyt tag på parcelhus", type: "Tag", sted: "Kjellerup", aar: 2025, billede: "projekt-5.jpg" },
+  { titel: "Havestue med glasparti", type: "Tilbygning", sted: "Silkeborg", aar: 2024, billede: "projekt-6.jpg" },
 ];
 
 // Fiktive udtalelser. Mærkes tydeligt på siden.
