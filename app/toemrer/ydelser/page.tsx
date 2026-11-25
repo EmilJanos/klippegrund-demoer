@@ -12,7 +12,7 @@ const d = (n: number) => ({ ["--d" as string]: n });
 
 export default function Ydelser() {
   return (
-    <main>
+    <main id="indhold" tabIndex={-1}>
       <Sidehoved {...sider.ydelser} />
 
       {/* De tre hovedydelser, skiftevis billede til venstre og højre */}

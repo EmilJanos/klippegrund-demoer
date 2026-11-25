@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/inter-tight";
 import "@fontsource/instrument-serif/400-italic.css";
@@ -15,11 +15,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Mobilbrowserens adresselinje får samme farve som demobåndet øverst
+export const viewport: Viewport = { themeColor: "#30190f" };
+
 export default function ToemrerLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="tm">
       {/* Sættes før første tegning, så indhold med [data-vis] ikke blinker. Uden JavaScript er alt synligt. */}
       <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('tm-js')" }} />
+      {/* Første stop med tastaturet: spring forbi menuen. Skjult, indtil det får fokus. */}
+      <a href="#indhold" className="tm-spring">
+        Spring til indhold
+      </a>
       <div className="tm-demobjaelke">
         Demo: {firma.navn} er et fiktivt firma. Siden er lavet af{" "}
         <a href="https://klippegrund.dk" rel="noopener">

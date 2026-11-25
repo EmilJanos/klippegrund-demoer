@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Projekter" };
 
 export default function Projekter() {
   return (
-    <main>
+    <main id="indhold" tabIndex={-1}>
       <Sidehoved {...sider.projekter} />
 
       <section className="tm-sektion tm-sektion-taet">

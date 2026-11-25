@@ -15,7 +15,7 @@ export default async function Kontakt({ searchParams }: { searchParams: Promise<
   const s = sider.kontakt;
 
   return (
-    <main>
+    <main id="indhold" tabIndex={-1}>
       <section className="tm-kontakt">
         <div className="tm-indhold tm-kontakt-gitter">
           <div className="tm-kontakt-info">

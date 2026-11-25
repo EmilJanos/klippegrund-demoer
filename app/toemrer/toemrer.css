@@ -2175,3 +2175,27 @@ main:not(:has(.tm-afslutning)) + .tm-footer .tm-footer-gitter {
     clip-path: polygon(11% 0, 100% 0, 89% 100%, 0 100%);
   }
 }
+
+/* Spring til indhold: usynligt link øverst, som glider frem, når man tabber ind på siden (tastaturbrugere). */
+.tm-spring {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 10px 16px;
+  border-radius: var(--radius-lille);
+  background: var(--hvid);
+  color: var(--blaek);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.tm-spring:focus-visible {
+  transform: none;
+}
+
+/* main får fokus fra linket, men skal ikke have en ramme om hele siden */
+.tm main:focus {
+  outline: none;
+}

@@ -18,7 +18,7 @@ export default function ToemrerForside() {
   const heroSrc = heroPc ?? pladsholder("hero.jpg", "eg-varm");
 
   return (
-    <main>
+    <main id="indhold" tabIndex={-1}>
       {/* Hero: stor overskrift på lys baggrund, fotoet (eller videoen) i en ramme nedenunder */}
       <section className="tm-hero">
         <div className="tm-indhold">
