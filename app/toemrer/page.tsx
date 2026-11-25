@@ -128,7 +128,7 @@ export default function ToemrerForside() {
               {omFirmaet.tal.map((t) => (
                 <p key={t.tekst}>
                   <strong>
-                    <span data-tael={t.tal}>{t.tal}</span>
+                    <span data-tael={t.tal}>{t.tal.toLocaleString("da-DK")}</span>
                     {t.efter}
                   </strong>
                   {t.tekst}

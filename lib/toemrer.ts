@@ -103,13 +103,13 @@ export const proces = [
 export const omFirmaet = {
   overlinje: "Om Egebyg",
   udsagn:
-    "Egebyg er et familiefirma med fem tømrere og en lærling. Vi har bygget tage, tilbygninger og køkkener i Silkeborg siden 2004.",
+    "Egebyg er et familiefirma med seks tømrere og en lærling. Vi har bygget tage, tilbygninger og køkkener i Silkeborg siden 2004.",
   tekst: "Du har den samme kontaktperson fra første besøg til sidste skrue, og vi siger det ærligt, hvis noget ikke kan betale sig.",
   billede: "om-mester.jpg",
   tal: [
     { tal: new Date().getFullYear() - 2004, efter: "", tekst: "års erfaring" },
-    { tal: 480, efter: "+", tekst: "afsluttede opgaver" },
-    { tal: 6, efter: "", tekst: "mand på holdet" },
+    { tal: 2000, efter: "+", tekst: "afsluttede opgaver" },
+    { tal: 7, efter: "", tekst: "mand på holdet" },
   ],
 };
 

@@ -29,7 +29,7 @@ export default function Effekter() {
       const varighed = 1500;
       const trin = (nu: number) => {
         const t = klem((nu - start) / varighed);
-        el.textContent = String(Math.round(maal * (1 - Math.pow(1 - t, 4))));
+        el.textContent = Math.round(maal * (1 - Math.pow(1 - t, 4))).toLocaleString("da-DK");
         if (t < 1) requestAnimationFrame(trin);
       };
       requestAnimationFrame(trin);
