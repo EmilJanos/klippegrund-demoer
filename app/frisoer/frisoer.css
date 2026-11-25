@@ -2572,3 +2572,35 @@ body:has(.fr) {
     white-space: nowrap;
   }
 }
+
+/* Hover på fotos: billedet zoomer langsomt ind og lyser lidt op (Emil 25. nov.). Kun med mus, ikke på før/efter-skyderen. */
+@media (hover: hover) {
+  .fr-billede > :is(img, video) {
+    transition:
+      transform 0.9s var(--ud),
+      filter 0.6s ease;
+  }
+
+  .fr-billede:hover > :is(img, video) {
+    transform: scale(1.06);
+    filter: brightness(1.1) saturate(1.06);
+  }
+
+  .fr-baand li {
+    transition: translate 0.5s var(--ud);
+  }
+
+  .fr-baand li:hover {
+    translate: 0 -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fr-billede:hover > :is(img, video) {
+    transform: none;
+  }
+
+  .fr-baand li:hover {
+    translate: none;
+  }
+}
