@@ -166,7 +166,7 @@ export default function ToemrerForside() {
           <div className="tm-galleri">
             {projekter.slice(0, 4).map((p, n) => (
               <figure key={p.titel} className="tm-projekt" data-vis style={d(n % 2)}>
-                <div className={`tm-billede tm-billede-4-3${p.form ? ` tm-form-${p.form}` : ""}`}>
+                <div className="tm-billede tm-billede-4-3">
                   <Foto fil={p.billede} alt={p.titel} />
                 </div>
                 <figcaption>
