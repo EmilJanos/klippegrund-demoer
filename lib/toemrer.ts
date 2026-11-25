@@ -32,14 +32,14 @@ export const hero = {
   tekst: "Tag, vinduer, tilbygninger og alt det imellem. Du får en fast pris, før vi går i gang, og vi rydder op efter os.",
   knap: "Få et tilbud",
   link: "Se projekter",
-  skilt: "Vi kører i Silkeborg og 30 minutter omkring",
+  skilt: "Vi kører i Silkeborg og omegn",
 };
 
 export const styrker = [
-  { ikon: "pris", titel: "Fast pris", tekst: "Du kender prisen, før vi starter. Ingen overraskelser på regningen." },
-  { ikon: "svar", titel: "Svar inden for et døgn", tekst: "Ring eller skriv, så vender vi tilbage samme dag eller dagen efter." },
-  { ikon: "oprydning", titel: "Vi rydder op", tekst: "Pladsen er fejet, og affaldet er kørt væk, når vi går hjem." },
-  { ikon: "lokal", titel: "Lokalt firma", tekst: "Vi bor her selv og kører ikke længere end en halv time." },
+  { ikon: "pris", titel: "Fast pris", tekst: "Du kender prisen, før vi starter. Ekstra arbejde aftaler vi altid med dig først." },
+  { ikon: "svar", titel: "Svar senest næste hverdag", tekst: "Ring eller skriv, så vender vi tilbage senest næste hverdag." },
+  { ikon: "oprydning", titel: "Vi rydder op", tekst: "Vi fejer efter hver arbejdsdag og kører affaldet væk, når opgaven er færdig." },
+  { ikon: "lokal", titel: "Lokalt firma", tekst: "Vi bor her selv og kører i Silkeborg og omegn." },
 ];
 
 export const ydelser = [
@@ -72,7 +72,7 @@ export const ydelser = [
   {
     id: "tilbygning",
     titel: "Tilbygning og ombygning",
-    tekst: "Fra første skitse til sidste fodliste. Vi samarbejder med murer, elektriker og VVS, så du kun har én at ringe til.",
+    tekst: "Fra første skitse til sidste fodliste. Vi samarbejder med murer, elektriker og VVS-installatør, så du kun har én at ringe til.",
     billede: "ydelse-tilbygning.jpg",
     punkter: [
       "Tilbygninger og havestuer",
@@ -96,7 +96,7 @@ export const ogsaa = [
 export const proces = [
   { titel: "Vi kommer forbi", tekst: "Vi ser på opgaven, måler op og hører, hvad du ønsker. Besøget er gratis." },
   { titel: "Du får en fast pris", tekst: "Inden for få dage har du et skriftligt tilbud med pris og tidsplan." },
-  { titel: "Vi bygger", tekst: "Du har den samme tømrer på opgaven fra start til slut, og vi rydder op hver dag." },
+  { titel: "Vi bygger", tekst: "Du har den samme kontaktperson fra start til slut, og vi rydder op hver dag." },
   { titel: "Vi afleverer", tekst: "Vi går det hele igennem sammen. Først når du er tilfreds, er vi færdige." },
 ];
 
@@ -109,13 +109,13 @@ export const omFirmaet = {
   tal: [
     { tal: new Date().getFullYear() - 2004, efter: "", tekst: "års erfaring" },
     { tal: 2000, efter: "+", tekst: "afsluttede opgaver" },
-    { tal: 7, efter: "", tekst: "mand på holdet" },
+    { tal: 7, efter: "", tekst: "på holdet" },
   ],
 };
 
 export const foerEfter = [
-  { titel: "Terrasse", foer: "terrasse-foer.jpg", efter: "terrasse-efter.jpg", tekst: "Gammel terrasse skiftet til lærketræ med trappe ned til haven." },
-  { titel: "Køkken", foer: "koekken-foer.jpg", efter: "koekken-efter.jpg", tekst: "Køkken fra firserne skiftet til fronter og bordplade i lys eg." },
+  { titel: "Terrasse", foer: "terrasse-foer.jpg", efter: "terrasse-efter.jpg", tekst: "Den gamle terrasse er skiftet ud med en ny i lærketræ med trappe ned til haven." },
+  { titel: "Køkken", foer: "koekken-foer.jpg", efter: "koekken-efter.jpg", tekst: "Køkken fra firserne har fået nye fronter og bordplade i lys eg." },
 ];
 
 // form: valgfri billedform (klassen tm-form-<navn> i toemrer.css). Uden form er billedet firkantet med runde hjørner.
@@ -155,7 +155,7 @@ export const sider = {
   kontakt: {
     overlinje: "Kontakt",
     titel: "Fortæl os om _opgaven_",
-    tekst: "Skriv et par linjer, eller ring. Vi vender tilbage inden for et døgn.",
+    tekst: "Skriv et par linjer, eller ring. Vi vender tilbage senest næste hverdag.",
   },
 };
 

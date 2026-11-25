@@ -191,7 +191,7 @@ export default function ToemrerForside() {
                 Det siger <em>kunderne</em>
               </h2>
             </div>
-            <p className="tm-note">Eksempler. Personerne er fiktive.</p>
+            <p className="tm-note">Eksempler. Navne og udtalelser er fiktive.</p>
           </div>
           <div className="tm-anmeldelser">
             {anmeldelser.map((a, n) => (
