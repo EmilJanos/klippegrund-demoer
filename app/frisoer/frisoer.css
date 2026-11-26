@@ -2934,3 +2934,12 @@ html:has(.fr) {
 .fr-hero-medie .fr-billede > video {
   object-position: 50% 0;
 }
+
+/* Baggrunden glider en lille smule med, når man scroller (Emil 26. nov.).
+   Mønsteret er gjort 240 px højere og flyttes op til 240 px fra top til bund af siden.
+   --bg-y sættes i Effekter.tsx og står på 0 ved "mindre bevægelse". */
+.fr::before {
+  inset: 0 0 -240px;
+  transform: translate3d(0, calc(var(--bg-y, 0) * -240px), 0);
+  will-change: transform;
+}

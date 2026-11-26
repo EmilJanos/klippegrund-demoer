@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 //  - [data-lys]   glaskort, der lyser op, hvor musen er
 //  - [data-vip]   gavekortet, der vipper efter musen
 //  - .fr-header   bliver til glas, når siden er rullet
+//  - .fr::before  baggrunden glider en smule med, når man scroller (--bg-y)
 
 export default function Effekter() {
   const sti = usePathname();
@@ -55,6 +56,28 @@ export default function Effekter() {
     window.addEventListener("scroll", rul, { passive: true });
     rul();
     ryd.push(() => window.removeEventListener("scroll", rul));
+
+    // Baggrundsmønsteret glider en lille smule med, når man scroller (--bg-y går fra 0 til 1)
+    const fr = document.querySelector<HTMLElement>(".fr");
+    if (fr && !rolig) {
+      let ramme = 0;
+      const flyt = () => {
+        ramme = 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        fr.style.setProperty("--bg-y", max > 0 ? (window.scrollY / max).toFixed(4) : "0");
+      };
+      const paa = () => {
+        if (!ramme) ramme = requestAnimationFrame(flyt);
+      };
+      window.addEventListener("scroll", paa, { passive: true });
+      window.addEventListener("resize", paa);
+      flyt();
+      ryd.push(() => {
+        window.removeEventListener("scroll", paa);
+        window.removeEventListener("resize", paa);
+        cancelAnimationFrame(ramme);
+      });
+    }
 
     // Lys og vip følger kun en rigtig mus, ikke fingre
     if (!rolig && window.matchMedia("(hover: hover)").matches) {
