@@ -63,6 +63,7 @@ export const om = {
   punkter: [
     { ikon: "samtale", tekst: "Vi starter altid med en snak" },
     { ikon: "blad", tekst: "Veganske produkter" },
+    { ikon: "kaffe", tekst: "Kaffe og ro, mens du venter" },
     { ikon: "hjerte", tekst: "Ikke tilfreds? Vi retter det gratis" },
   ],
 } as const;

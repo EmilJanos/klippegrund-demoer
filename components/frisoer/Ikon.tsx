@@ -1,10 +1,11 @@
-import { ArrowRight, Calendar, Check, Clock, Crown, Droplet, Heart, Leaf, Menu, MessageCircle, Paintbrush, Pause, Phone, Play, Scissors, Sparkles, Star, Users, X, type LucideIcon } from "lucide-react";
+import { ArrowRight, Calendar, Check, Clock, Coffee, Crown, Droplet, Heart, Leaf, Menu, MessageCircle, Paintbrush, Pause, Phone, Play, Scissors, Sparkles, Star, Users, X, type LucideIcon } from "lucide-react";
 
 const ikoner = {
   pil: ArrowRight,
   kalender: Calendar,
   flueben: Check,
   tid: Clock,
+  kaffe: Coffee,
   krone: Crown,
   draabe: Droplet,
   hjerte: Heart,
