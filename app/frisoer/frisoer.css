@@ -2707,3 +2707,10 @@ body:has(.fr) {
   position: absolute;
   inset: 0;
 }
+
+/* Olie-videoen har sort baggrund. Med "screen" bliver det sorte gennemsigtigt, så sidens mønster
+   ses bag flasken på alle skærme og hele vejen, mens man ruller (Emil 26. nov.). */
+.fr-sidehoved-flade :is(video, img) {
+  mix-blend-mode: screen;
+  filter: contrast(1.1);
+}
