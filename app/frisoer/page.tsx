@@ -151,7 +151,7 @@ export default function Forside() {
           </h2>
           <p className="fr-brod">{farver.tekst}</p>
           <Link href="/frisoer/book" className="fr-knap fr-knap-kant">
-            Book en farvesamtale
+            Book en samtale om dit hår
           </Link>
         </div>
         <div data-vis className="fr-skyder-ramme">

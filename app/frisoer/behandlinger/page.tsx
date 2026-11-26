@@ -5,7 +5,7 @@ import Afslutning from "@/components/frisoer/Afslutning";
 import Foto, { fotoSrcSet, fotoSti, medieSti } from "@/components/frisoer/Foto";
 import HeroVideo from "@/components/frisoer/HeroVideo";
 import Ikon from "@/components/frisoer/Ikon";
-import { behandlinger, elevGruppe, elevnote, prisliste, prisnote } from "@/lib/frisoer";
+import { behandlinger, elevGruppe, elevnote, farvenote, prisliste, prisnote } from "@/lib/frisoer";
 
 export const metadata: Metadata = { title: "Behandlinger & priser" };
 
@@ -18,8 +18,7 @@ export default function Behandlinger() {
         medieVenstre
         overlinje="Behandlinger & priser"
         titel="Erfaring, du kan _mærke_"
-        underrubrik="Personlig service og et resultat, der taler for sig selv."
-        tekst={"Alle priser er med vask, føn og gratis kaffe.\nEr du i tvivl om, hvad du skal vælge, så book en uforpligtende samtale på 15 minutter."}
+        tekst="Er du i tvivl om, hvad du skal vælge, så book en gratis samtale om dit hår."
         medie={
           flaske ? (
             <div className="fr-flaske">
@@ -51,6 +50,7 @@ export default function Behandlinger() {
             <div className="fr-glas fr-prisgruppe-kort" data-lys>
               <h2>{g.navn}</h2>
               {g.id === elevGruppe && <p className="fr-elevnote">{elevnote}</p>}
+              {g.id === "farve" && <p className="fr-elevnote">{farvenote}</p>}
               <ul>
                 {g.punkter.map((p) => (
                   <li key={p.navn}>
@@ -64,7 +64,7 @@ export default function Behandlinger() {
                           {p.normal.toLocaleString("da-DK")} kr.
                         </s>
                       )}
-                      {p.pris.toLocaleString("da-DK")} kr.
+                      {p.pris === 0 ? "Gratis" : `${p.pris.toLocaleString("da-DK")} kr.`}
                     </span>
                   </li>
                 ))}

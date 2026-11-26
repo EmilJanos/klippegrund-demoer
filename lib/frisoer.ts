@@ -18,7 +18,7 @@ export const menu = [
 ];
 
 export const hero = {
-  overlinje: "Frisør i hjertet af Aarhus",
+  overlinje: "Frisør i Klostergade, Aarhus",
   linjer: ["Hår, der", "føles som", "_dig_"],
   tekst: "Klip, farve og pleje hos frisører, der tager sig tid til at lytte. Du går herfra med et hår, du selv kan sætte derhjemme.",
   anmeldelse: { tal: "4,9", antal: "1.200+ anmeldelser" },
@@ -32,11 +32,11 @@ export const tal = [
 ] as const;
 
 export const behandlinger = [
-  { fil: "behandling-klip.jpg", ikon: "saks", navn: "Klip & styling", tekst: "Et klip, der passer til dit hår og din hverdag.", fra: "fra 495 kr." },
-  { fil: "behandling-farve.jpg", ikon: "pensel", navn: "Farve & balayage", tekst: "Fra diskrete reflekser til en helt ny farve.", fra: "fra 895 kr." },
+  { fil: "behandling-klip.jpg", ikon: "saks", navn: "Klip & styling", tekst: "Et klip, der passer til dit hår og din hverdag.", fra: "Dameklip fra 595 kr." },
+  { fil: "behandling-farve.jpg", ikon: "pensel", navn: "Farve & balayage", tekst: "Fra diskrete reflekser til en helt ny farve.", fra: "Bundfarve fra 895 kr." },
   { fil: "behandling-pleje.jpg", ikon: "draabe", navn: "Kur & pleje", tekst: "Fugt og styrke til hår, der trænger.", fra: "fra 295 kr." },
   { fil: "behandling-opsaetning.jpg", ikon: "stjerne", navn: "Opsætning", tekst: "Til bryllup, galla og de store dage.", fra: "fra 695 kr." },
-  { fil: "behandling-herre.jpg", ikon: "skaeg", navn: "Herre & skæg", tekst: "Skarpe linjer og velplejet skæg.", fra: "fra 395 kr." },
+  { fil: "behandling-herre.jpg", ikon: "skaeg", navn: "Herre & skæg", tekst: "Skarpe linjer og velplejet skæg.", fra: "Skægtrim fra 225 kr." },
 ] as const;
 
 export const farver = {
@@ -48,7 +48,7 @@ export const farver = {
 };
 
 export const grafik = {
-  overlinje: "Mere end en salon",
+  overlinje: "Gavekort",
   titel: "Giv en _oplevelse_ videre",
   tekst: "Gavekortet gælder til alle behandlinger og til vores egen plejeserie, Prisme Care. Købes i salonen.",
   punkter: ["Gavekort på valgfrit beløb", "Prisme Care: shampoo, balsam og olie", "Smukt pakket ind, klar til at give væk"],
@@ -63,7 +63,6 @@ export const om = {
   punkter: [
     { ikon: "samtale", tekst: "Vi starter altid med en snak" },
     { ikon: "blad", tekst: "Veganske produkter" },
-    { ikon: "tid", tekst: "Tid nok til hver kunde" },
     { ikon: "hjerte", tekst: "Ikke tilfreds? Vi retter det gratis" },
   ],
 } as const;
@@ -72,7 +71,7 @@ export const udtalelser = [
   { navn: "Camilla", by: "Aarhus C", tekst: "Første gang i mange år, at jeg har fået præcis den farve, jeg viste på billedet." },
   { navn: "Jonas", by: "Risskov", tekst: "Hurtig booking, god kaffe og et klip, der stadig sidder godt efter seks uger." },
   { navn: "Sara", by: "Viby J", tekst: "De sagde ærligt, hvad mit hår kunne holde til. Det endte meget bedre end min egen idé." },
-  { navn: "Mette", by: "Højbjerg", tekst: "Brudeopsætningen sad hele natten, også efter dansegulvet. Prøven gjorde mig helt rolig." },
+  { navn: "Mette", by: "Højbjerg", tekst: "Brudeopsætningen holdt hele natten, også på dansegulvet. Prøven gjorde mig helt rolig." },
   { navn: "Ali", by: "Aarhus N", tekst: "Endelig en fade, der er ens i begge sider. Jeg har fast tid hver tredje uge nu." },
   { navn: "Louise", by: "Brabrand", tekst: "Min søn hader at blive klippet, men her sad han stille hele vejen. Det siger alt." },
   { navn: "Peter", by: "Lystrup", tekst: "Jeg kom ind med en hjemmeklipning, der var gået galt. Jeg gik derfra og lignede mig selv igen." },
@@ -103,6 +102,8 @@ export const prisliste = [
       { navn: "Børneklip (under 12 år)", tid: 30, pris: 295 },
       { navn: "Pandehår eller nakke", tid: 15, pris: 150 },
       { navn: "Vask og føn", tid: 30, pris: 350 },
+      // pris 0 vises som "Gratis"
+      { navn: "Samtale om dit hår", tid: 15, pris: 0 },
     ],
   },
   {
@@ -161,7 +162,9 @@ export const prisliste = [
 ] as const;
 
 export const elevGruppe = "elev";
-export const elevnote = "Vores to elever klipper og farver til elevpris. En uddannet frisør ser med hele vejen, så sæt lidt ekstra tid af.";
+export const elevnote = "Elevbehandlinger tager lidt længere tid. En uddannet frisør ser med hele vejen.";
+
+export const farvenote = "Alle farvebehandlinger er med vask og føn.";
 
 export const prisnote = "Priserne er vejledende. Langt eller meget tykt hår kan koste lidt mere. Det aftaler vi, før vi går i gang.";
 
@@ -170,9 +173,9 @@ export const prisnote = "Priserne er vejledende. Langt eller meget tykt hår kan
 export const team: { id: string; fil: string; navn: string; rolle: string; tekst: string; fag: string[]; elev?: boolean }[] = [
   { id: "maja", fil: "team-1.jpg", navn: "Maja Lindgaard", rolle: "Indehaver og frisør", tekst: "Åbnede salonen i 2014 og har klippet i 18 år. Rolig hånd og et skarpt øje for, hvad der klæder et ansigt.", fag: ["Korte klip", "Bob", "Bryllup"] },
   { id: "jacob", fil: "team-2.jpg", navn: "Jacob Krogh", rolle: "Frisør og barber", tekst: "Uddannet barber fra København. Går op i rene linjer og et skæg, der passer til ansigtet.", fag: ["Fade", "Skæg", "Herreklip"] },
-  { id: "freja", fil: "team-3.jpg", navn: "Freja Holm", rolle: "Farvespecialist", tekst: "Har taget farvekurser i London og laver salonens fleste balayager. Ærlig om, hvad dit hår kan holde til.", fag: ["Balayage", "Blonde nuancer", "Farveretning"] },
+  { id: "freja", fil: "team-3.jpg", navn: "Freja Holm", rolle: "Farvespecialist", tekst: "Har taget farvekurser i London og laver de fleste balayager i salonen.", fag: ["Balayage", "Blonde nuancer", "Farveretning"] },
   { id: "ida", fil: "team-4.jpg", navn: "Ida Rask", rolle: "Frisør", tekst: "Specialist i krøller og bølger. Lærer dig at sætte håret selv, så det også sidder derhjemme.", fag: ["Krøller", "Tørklip", "Pleje"] },
-  { id: "noah", fil: "team-5.jpg", navn: "Noah Bach", rolle: "Frisør og stylist", tekst: "Kommer fra modeshows og fotooptagelser. Ham du skal have, når håret skal sættes op til en stor dag.", fag: ["Opsætning", "Langt hår", "Styling"] },
+  { id: "noah", fil: "team-5.jpg", navn: "Noah Bach", rolle: "Frisør og stylist", tekst: "Kommer fra modeshows og fotooptagelser. Ham, du skal have, når håret skal sættes op til en stor dag.", fag: ["Opsætning", "Langt hår", "Styling"] },
   { id: "alma", fil: "team-6.jpg", elev: true, navn: "Alma Winther", rolle: "Elev på 2. år", tekst: "Går på frisørskolen i Aarhus og er i salonen tre dage om ugen. Grundig med saksen og god til at spørge, før hun klipper.", fag: ["Dameklip", "Føn", "Fugtkur"] },
   { id: "liam", fil: "team-7.jpg", elev: true, navn: "Liam Coren", rolle: "Elev på 3. år", tekst: "Kom til Aarhus fra Manchester og er næsten udlært. Farve er hans yndlingsfag, og herreklip sidder allerede på rygraden.", fag: ["Herreklip", "Bundfarve", "Dameklip"] },
 ];
@@ -180,9 +183,9 @@ export const team: { id: string; fil: string; navn: string; rolle: string; tekst
 export const teamTekst = {
   overlinje: "Team",
   titel: "Mød dem, der står bag _stolen_",
-  tekst: "Fem frisører med hver deres speciale og to elever, der er godt på vej. Du vælger selv, hvem du vil klippes af, når du booker.",
+  tekst: "Fem frisører med hver deres speciale og to elever, der er godt på vej. Du vælger selv, hvem du booker hos.",
   elever: { overlinje: "Elever", titel: "Næste _generation_", tekst: "Alma og Liam er under uddannelse hos os. Du kan booke udvalgte behandlinger hos dem til elevpris, og en uddannet frisør ser altid med." },
-  ringe: { overlinje: "Håndværket", titel: "Vi bliver ved med at _øve_ os", tekst: "Hele teamet er på kursus fire gange om året, og hver mandag morgen øver vi nye teknikker på hinanden. Så ved vi, at det virker, før du sætter dig i stolen." },
+  ringe: { overlinje: "Håndværket", titel: "Vi bliver ved med at _øve_ os", tekst: "Hele teamet er på kursus fire gange om året, og hver mandag morgen øver vi nye teknikker sammen." },
 };
 
 // ---------- Book tid ----------

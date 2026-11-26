@@ -138,7 +138,7 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
                       <span className="fr-valg-tid">{p.tid} min.</span>
                       <span className="fr-valg-pris">
                         {"normal" in p && <s className="fr-pris-normal">{p.normal.toLocaleString("da-DK")} kr.</s>}
-                        {p.pris.toLocaleString("da-DK")} kr.
+                        {p.pris === 0 ? "Gratis" : `${p.pris.toLocaleString("da-DK")} kr.`}
                       </span>
                     </label>
                   ))}
@@ -148,8 +148,8 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
 
           {nu === 1 && (
             <fieldset>
-              <legend>{elevValgt ? "Hvilken elev vil du have?" : "Hvem vil du klippes af?"}</legend>
-              {elevValgt && <p className="fr-elevnote">Elevbehandlinger laves af vores to elever. En uddannet frisør ser med hele vejen.</p>}
+              <legend>{elevValgt ? "Hvilken elev vil du booke hos?" : "Hvem vil du booke hos?"}</legend>
+              {elevValgt && <p className="fr-elevnote">En uddannet frisør ser med hele vejen.</p>}
               <div className="fr-book-frisoerer">
                 <label className="fr-valg fr-valg-person">
                   <input type="radio" name="frisoer" checked={frisoer === "alle"} onChange={() => setFrisoer("alle")} />
@@ -278,7 +278,7 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
         </dl>
         <p className="fr-book-total">
           <span>Pris</span>
-          <strong>{behandling ? `${behandling.pris.toLocaleString("da-DK")} kr.` : "-"}</strong>
+          <strong>{behandling ? (behandling.pris === 0 ? "Gratis" : `${behandling.pris.toLocaleString("da-DK")} kr.`) : "-"}</strong>
         </p>
         <p className="fr-book-demo">Demo: intet sendes eller gemmes.</p>
       </aside>

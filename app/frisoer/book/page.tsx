@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Book tid" };
 export default function Book() {
   return (
     <main id="indhold">
-      <Sidehoved overlinje="Book tid" titel="Din tid på et _minut_" tekst="Vælg behandling, frisør og tidspunkt. Du kan ændre eller aflyse gratis indtil 24 timer før." />
+      <Sidehoved overlinje="Book tid" titel="Din tid på et _minut_" tekst="Vælg behandling, frisør og tidspunkt. Du kan ændre eller aflyse gratis indtil 24 timer før. Ved senere afbud betaler du halv pris." />
       <div className="fr-indhold fr-sektion-bund fr-book-ramme">
         {/* Findes portrættet endnu ikke, viser bookingen initialer i stedet */}
         <Booking portraetter={team.map((t) => (fotoSti(t.fil) ? <Foto key={t.id} fil={t.fil} alt="" sizes="64px" /> : null))} />
