@@ -2928,3 +2928,9 @@ html:has(.fr) {
 .fr-skyder-ramme {
   width: min(100%, 620px);
 }
+
+/* Hero-videoen (Emil 26. nov.): udsnittet starter fra toppen, så hele hovedet og håret ses */
+.fr-hero-medie .fr-billede > img,
+.fr-hero-medie .fr-billede > video {
+  object-position: 50% 0;
+}
