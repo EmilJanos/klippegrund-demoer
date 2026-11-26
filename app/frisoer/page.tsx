@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Foto, { fotoSti, medieSti } from "@/components/frisoer/Foto";
+import { preload } from "react-dom";
+import Foto, { fotoSrcSet, fotoSti, medieSti } from "@/components/frisoer/Foto";
 import Ikon from "@/components/frisoer/Ikon";
 import { Kursiv } from "@/components/frisoer/Tekst";
 import Farveskyder from "@/components/frisoer/Farveskyder";
@@ -12,6 +13,12 @@ export default function Forside() {
   const bogstavVideo = medieSti("bogstaver.mp4");
   const bogstavFoto = fotoSti("bogstaver.jpg");
   const raekker = [galleri.slice(0, 6), galleri.slice(6)];
+  const heroPlakat = fotoSti("hero.jpg");
+  // Heroens startbillede er det største på skærmen, så det hentes først
+  if (heroPlakat) {
+    const srcSet = fotoSrcSet(heroPlakat);
+    preload(heroPlakat, { as: "image", fetchPriority: "high", imageSrcSet: srcSet, imageSizes: srcSet ? "(max-width: 760px) 86vw, 500px" : undefined });
+  }
 
   return (
     <main id="indhold">
@@ -52,7 +59,7 @@ export default function Forside() {
           <div className="fr-hero-medie">
             <span className="fr-hero-ring" aria-hidden="true" />
             <div className="fr-billede fr-form-facet">
-              {heroVideo ? <HeroVideo src={heroVideo} plakat={fotoSti("hero.jpg") ?? undefined} /> : <Foto fil="hero.jpg" alt="Kvinde med langt, bølget hår i varmt lys" prioritet tone={2} />}
+              {heroVideo ? <HeroVideo src={heroVideo} plakat={heroPlakat ?? undefined} plakatSrcSet={heroPlakat ? fotoSrcSet(heroPlakat) : undefined} plakatSizes="(max-width: 760px) 86vw, 500px" prioritet /> : <Foto fil="hero.jpg" alt="Kvinde med langt, bølget hår i varmt lys" prioritet tone={2} />}
             </div>
             <div className="fr-hero-kort fr-glas">
               <Ikon navn="kalender" size={18} />
@@ -69,7 +76,7 @@ export default function Forside() {
       <section className="fr-bogstaver" aria-label={firma.navn}>
         <div className="fr-bogstaver-medie">
           {bogstavVideo ? (
-            <video src={bogstavVideo} poster={bogstavFoto ?? undefined} muted loop playsInline autoPlay aria-hidden="true" />
+            <HeroVideo src={bogstavVideo} plakat={bogstavFoto ?? undefined} utenKnap />
           ) : bogstavFoto ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={bogstavFoto} alt="" />
@@ -118,7 +125,7 @@ export default function Forside() {
             <li key={b.navn} data-vis style={{ ["--i" as string]: i }}>
               <Link href="/frisoer/behandlinger" className="fr-kort fr-glas" data-lys>
                 <span className="fr-billede fr-form-skraa">
-                  <Foto fil={b.fil} alt="" />
+                  <Foto fil={b.fil} alt="" sizes="(max-width: 760px) 80vw, 260px" />
                 </span>
                 <span className="fr-kort-ikon">
                   <Ikon navn={b.ikon} size={19} />
@@ -151,7 +158,7 @@ export default function Forside() {
         </div>
       </section>
 
-      {/* Galleri: to rækker, der glider hver sin vej */}
+      {/* Galleri: to rækker, der glider hver sin vej. Hver række står der fire gange, så båndet altid fylder skærmen. */}
       <section className="fr-sektion fr-galleri" aria-label="Billeder fra salonen">
         <div className="fr-indhold fr-sektion-top" data-vis>
           <div>
@@ -164,9 +171,9 @@ export default function Forside() {
         {raekker.map((r, n) => (
           <div key={n} className={`fr-baand ${n ? "fr-baand-modsat" : ""}`}>
             <ul>
-              {[...r, ...r].map((fil, i) => (
+              {[...r, ...r, ...r, ...r].map((fil, i) => (
                 <li key={i} className="fr-billede fr-form-skraa" aria-hidden={i >= r.length}>
-                  <Foto fil={fil} alt={i < r.length ? "Frisure lavet i salonen" : ""} />
+                  <Foto fil={fil} alt={i < r.length ? "Frisure lavet i salonen" : ""} sizes="(max-width: 760px) 200px, 320px" />
                 </li>
               ))}
             </ul>
@@ -219,9 +226,9 @@ export default function Forside() {
         </div>
       </section>
 
-      {/* Udtalelser */}
-      <section className="fr-sektion fr-indhold">
-        <div className="fr-sektion-top" data-vis>
+      {/* Udtalelser: endeløst bånd i fuld bredde ligesom galleriet */}
+      <section className="fr-sektion">
+        <div className="fr-indhold fr-sektion-top" data-vis>
           <div>
             <p className="fr-overlinje">Kunderne siger</p>
             <h2>
@@ -229,21 +236,23 @@ export default function Forside() {
             </h2>
           </div>
         </div>
-        <ul className="fr-udtalelser">
-          {udtalelser.map((u, i) => (
-            <li key={u.navn} className="fr-glas" data-lys data-vis style={{ ["--i" as string]: i }}>
-              <span className="fr-stjerner" aria-label="5 af 5 stjerner" role="img">
-                {[0, 1, 2, 3, 4].map((s) => (
-                  <Ikon key={s} navn="stjerne" size={15} fyld />
-                ))}
-              </span>
-              <blockquote>{u.tekst}</blockquote>
-              <p>
-                <strong>{u.navn}</strong> · {u.by}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="fr-baand fr-udtalelser-baand">
+          <ul className="fr-udtalelser">
+            {[...udtalelser, ...udtalelser].map((u, i) => (
+              <li key={i} className="fr-glas" data-lys aria-hidden={i >= udtalelser.length}>
+                <span className="fr-stjerner" aria-label="5 af 5 stjerner" role="img">
+                  {[0, 1, 2, 3, 4].map((s) => (
+                    <Ikon key={s} navn="stjerne" size={15} fyld />
+                  ))}
+                </span>
+                <blockquote>{u.tekst}</blockquote>
+                <p>
+                  <strong>{u.navn}</strong> · {u.by}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Afslutning */}

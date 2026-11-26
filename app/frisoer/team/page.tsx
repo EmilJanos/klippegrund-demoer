@@ -19,7 +19,7 @@ export default function Team() {
           <li key={t.id} data-vis style={{ ["--i" as string]: i }}>
             <Link href={`/frisoer/book?frisoer=${t.id}`} className="fr-teamkort fr-glas" data-lys>
               <span className="fr-billede">
-                <Foto fil={t.fil} alt={`Portræt af ${t.navn}`} />
+                <Foto fil={t.fil} alt={`Portræt af ${t.navn}`} sizes="(max-width: 760px) 92vw, 25vw" />
               </span>
               <span className="fr-teamkort-tekst">
                 <strong>{t.navn}</strong>

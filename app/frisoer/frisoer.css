@@ -25,8 +25,8 @@
   --luft: clamp(80px, 10vw, 150px);
   --ud: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --serif: "Playfair Display Variable", "Playfair Display", Georgia, serif;
-  --brod: "Inter Variable", "Inter", system-ui, sans-serif;
+  --serif: var(--fr-skrift-serif), Georgia, serif;
+  --brod: var(--fr-skrift-brod), system-ui, sans-serif;
 
   font-family: var(--brod);
   font-size: 1.0625rem;
@@ -1039,7 +1039,7 @@ body:has(.fr) {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: fr-baand 60s linear infinite;
+  animation: fr-baand-ring 60s linear infinite;
 }
 
 .fr-baand-modsat ul {
@@ -1060,11 +1060,6 @@ body:has(.fr) {
   width: clamp(260px, 30vw, 440px);
 }
 
-@keyframes fr-baand {
-  to {
-    transform: translateX(calc(-50% - 8px));
-  }
-}
 
 /* ---------- Grafik: gavekort og plejeserie ---------- */
 
@@ -1083,25 +1078,6 @@ body:has(.fr) {
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(209, 173, 114, 0.22), transparent);
   filter: blur(10px);
-}
-
-.fr-flasker {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: min(62%, 340px);
-}
-
-.fr-flaske-navn {
-  font: 500 6.5px var(--serif);
-  letter-spacing: 1.4px;
-  fill: #ecd7a8;
-}
-
-.fr-flaske-type {
-  font: 500 4px var(--brod);
-  letter-spacing: 1px;
-  fill: #a39a8c;
 }
 
 .fr-gavekort {
@@ -2436,11 +2412,6 @@ body:has(.fr) {
   width: clamp(200px, 22vw, 320px);
 }
 
-@keyframes fr-baand {
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 /* Før/efter har sin egen form (Emil 25. nov.): Oval som et håndspejl, med en tynd guldring forskudt bagved */
 .fr-skyder-ramme {
@@ -2623,4 +2594,116 @@ body:has(.fr) {
 /* Stående udgave af mønsteret til mobil, så bølgen ikke bliver forstørret. */
 @media (max-aspect-ratio: 1/1) {
   .fr::before { background-image: url("/frisoer/billeder/baggrund-mobil.webp"); }
+}
+
+/* ---------- Rettelser 26. nov. (Emil) ---------- */
+
+/* Muselyset i glaskortene er skruet 40 % ned */
+.fr [data-lys]:hover::before {
+  opacity: 0.6;
+}
+
+/* Glimmeret på gavekortet er skruet 30 % ned */
+.fr-gavekort-glans {
+  opacity: 0.7;
+}
+
+/* Prislisten: Opsætning og Herre & skæg viser den øverste del af fotoet, så hele håret ses */
+.fr-pris-foto-opsaetning > img {
+  object-position: 50% 12%;
+}
+
+.fr-pris-foto-herre > img {
+  object-position: 50% 8%;
+}
+
+/* Salonfotoet under Om salonen er større på pc */
+@media (min-width: 761px) {
+  .fr-delt:has(.fr-om-foto) {
+    grid-template-columns: 1.35fr 1fr;
+  }
+}
+
+/* Båndene (galleri og udtalelser) kører i en uafbrudt ring uden at stoppe.
+   Galleriets rækker står der fire gange, så ringen flytter præcis én række (25 %). */
+.fr-baand ul {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.fr-baand:hover ul {
+  animation-play-state: running;
+}
+
+@keyframes fr-baand-ring {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+/* Udtalelserne: 7 kort i et bånd i fuld bredde. Listen står der to gange, så ringen flytter 50 %.
+   Samme fart som galleriet (ca. 28 px i sekundet), og båndet holder pause, når musen er over et kort, så man kan læse det. */
+.fr-udtalelser-baand ul {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0;
+  animation-name: fr-baand-halv;
+  animation-duration: 94s;
+}
+
+.fr-udtalelser-baand:hover ul {
+  animation-play-state: paused;
+}
+
+.fr-udtalelser-baand li,
+.fr-udtalelser-baand li:nth-child(3n + 2) {
+  flex: none;
+  width: clamp(280px, 26vw, 360px);
+  aspect-ratio: auto;
+  margin: 0 16px 0 0;
+}
+
+@keyframes fr-baand-halv {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 760px) {
+  .fr-udtalelser-baand ul {
+    grid-template-columns: none;
+  }
+}
+
+/* Behandlinger: den drejende olie står til venstre, hvor siden er sort, og overskriften til højre (pc) */
+@media (min-width: 761px) {
+  .fr-sidehoved-venstre {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .fr-sidehoved-venstre .fr-sidehoved-flade {
+    order: -1;
+    justify-self: start;
+  }
+}
+
+/* Video oven på sit startbillede: toner frem, når den spiller (HeroVideo.tsx) */
+.fr-video {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fr-video.er-klar {
+  opacity: 1;
+}
+
+.fr-bogstaver-medie > * {
+  position: absolute;
+  inset: 0;
 }

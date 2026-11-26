@@ -72,6 +72,10 @@ export const udtalelser = [
   { navn: "Camilla", by: "Aarhus C", tekst: "Første gang i mange år, at jeg har fået præcis den farve, jeg viste på billedet." },
   { navn: "Jonas", by: "Risskov", tekst: "Hurtig booking, god kaffe og et klip, der stadig sidder godt efter seks uger." },
   { navn: "Sara", by: "Viby J", tekst: "De sagde ærligt, hvad mit hår kunne holde til. Det endte meget bedre end min egen idé." },
+  { navn: "Mette", by: "Højbjerg", tekst: "Brudeopsætningen sad hele natten, også efter dansegulvet. Prøven gjorde mig helt rolig." },
+  { navn: "Ali", by: "Aarhus N", tekst: "Endelig en fade, der er ens i begge sider. Jeg har fast tid hver tredje uge nu." },
+  { navn: "Louise", by: "Brabrand", tekst: "Min søn hader at blive klippet, men her sad han stille hele vejen. Det siger alt." },
+  { navn: "Peter", by: "Lystrup", tekst: "Jeg kom ind med en hjemmeklipning, der var gået galt. Jeg gik derfra og lignede mig selv igen." },
 ];
 
 export const afslutning = {
