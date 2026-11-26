@@ -2886,3 +2886,8 @@ body:has(.fr) {
     grid-template-columns: 1fr;
   }
 }
+
+/* Prislisten: klip-fotoet har fået luft over håret og vises fra toppen, så luften kommer med (Emil 26. nov.) */
+.fr-pris-foto-klip > img {
+  object-position: 50% 0;
+}
