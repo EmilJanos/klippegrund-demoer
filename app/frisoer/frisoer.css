@@ -2794,3 +2794,49 @@ body:has(.fr) {
 .fr-sidehoved .fr-hero-brod {
   white-space: pre-line;
 }
+
+/* Kortrækken på mobil skal glide frit som galleriet (Emil 26. nov.): ingen spring fra kort til kort,
+   ingen sløring bag kortene (den får rækken til at hakke på telefoner), og kortene står klar med det samme,
+   så de ikke toner frem midt i et swipe. */
+@media (max-width: 620px) {
+  .fr .fr-kort-raekke {
+    scroll-snap-type: none;
+  }
+
+  .fr .fr-kort-raekke li {
+    scroll-snap-align: none;
+  }
+
+  .fr-js .fr .fr-kort-raekke [data-vis] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .fr .fr-kort-raekke .fr-glas {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: linear-gradient(160deg, #1d1a16, #14120f);
+  }
+
+  .fr .fr-kort-raekke .fr-kort,
+  .fr .fr-kort-raekke .fr-kort:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Før og Efter står ude i hver sin side af ovalen, midt i højden (Emil 26. nov.) */
+.fr-skyder-ramme .fr-skyder-maerke {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+.fr-skyder-ramme .fr-skyder-maerke-v {
+  left: 5%;
+}
+
+.fr-skyder-ramme .fr-skyder-maerke-h {
+  right: 5%;
+}
