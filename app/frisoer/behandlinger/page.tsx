@@ -17,8 +17,9 @@ export default function Behandlinger() {
       <Sidehoved
         medieVenstre
         overlinje="Behandlinger & priser"
-        titel="Faste priser, _ingen_ overraskelser"
-        tekst="Alle priser er med vask, føn og en kop kaffe. Er du i tvivl om, hvad du skal vælge, så book en gratis samtale på 15 minutter."
+        titel="Erfaring, du kan _mærke_"
+        underrubrik="Personlig service og et resultat, der taler for sig selv."
+        tekst="Alle priser er med vask, føn og gratis kaffe. Er du i tvivl om, hvad du skal vælge, så book en uforpligtende samtale på 15 minutter."
         medie={
           flaske ? (
             <div className="fr-flaske">
