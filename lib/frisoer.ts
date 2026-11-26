@@ -19,7 +19,7 @@ export const menu = [
 
 export const hero = {
   overlinje: "Frisør i hjertet af Aarhus",
-  linjer: ["Dit hår.", "Din stil.", "Dit _udtryk_."],
+  linjer: ["Hår, der", "føles som", "_dig_"],
   tekst: "Klip, farve og pleje hos frisører, der tager sig tid til at lytte. Du går herfra med et hår, du selv kan sætte derhjemme.",
   anmeldelse: { tal: "4,9", antal: "1.200+ anmeldelser" },
 };
