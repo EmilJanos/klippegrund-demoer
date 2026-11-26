@@ -1,13 +1,30 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import "@fontsource-variable/inter";
-import "@fontsource-variable/playfair-display";
-import "@fontsource-variable/playfair-display/wght-italic.css";
+import localFont from "next/font/local";
 import "./frisoer.css";
 import Header from "@/components/frisoer/Header";
 import Footer from "@/components/frisoer/Footer";
 import Effekter from "@/components/frisoer/Effekter";
 import { firma } from "@/lib/frisoer";
+
+// Skrifterne hentes med next/font, så de forudindlæses og får en tilpasset reserveskrift.
+// Det fjerner det hop i layoutet, der ellers kommer, når skriften skifter (filerne kommer fra @fontsource-variable).
+const inter = localFont({
+  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--fr-skrift-brod",
+  adjustFontFallback: "Arial",
+});
+
+const playfair = localFont({
+  src: [
+    { path: "../../node_modules/@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2", style: "normal" },
+    { path: "../../node_modules/@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2", style: "italic" },
+  ],
+  weight: "400 900",
+  variable: "--fr-skrift-serif",
+  adjustFontFallback: "Times New Roman",
+});
 
 export const metadata: Metadata = {
   title: { default: `${firma.navn} | Frisør i ${firma.by} (demo)`, template: `%s | ${firma.navn} (demo)` },
@@ -19,7 +36,7 @@ export const viewport: Viewport = { themeColor: "#0b0a09" };
 
 export default function FrisoerLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fr">
+    <div className={`fr ${inter.variable} ${playfair.variable}`}>
       {/* Sættes før første tegning, så indhold med [data-vis] ikke blinker. Uden JavaScript er alt synligt. */}
       <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('fr-js')" }} />
       <a href="#indhold" className="fr-spring">

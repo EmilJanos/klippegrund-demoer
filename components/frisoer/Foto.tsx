@@ -18,7 +18,15 @@ export function medieSti(fil: string): string | null {
   return fs.existsSync(path.join(mappe, fil)) ? `/frisoer/billeder/${fil}` : null;
 }
 
-export default function Foto({ fil, alt, prioritet, tone }: { fil: string; alt: string; prioritet?: boolean; tone?: number }) {
+// Mindre udgaver (navn-480.webp, -800.webp, -1100.webp), så telefoner ikke henter de store filer.
+export function fotoSrcSet(src: string): string | undefined {
+  if (!src.endsWith(".webp")) return undefined;
+  const fil = path.basename(src, ".webp");
+  const dele = [480, 800, 1100].filter((b) => fs.existsSync(path.join(mappe, `${fil}-${b}.webp`))).map((b) => `/frisoer/billeder/${fil}-${b}.webp ${b}w`);
+  return dele.length ? [...dele, `${src} 1400w`].join(", ") : undefined;
+}
+
+export default function Foto({ fil, alt, prioritet, tone, sizes }: { fil: string; alt: string; prioritet?: boolean; tone?: number; sizes?: string }) {
   const src = fotoSti(fil);
   if (!src) {
     const t = tone ?? ([...fil].reduce((s, c) => s + c.charCodeAt(0), 0) % 4) + 1;
@@ -28,8 +36,17 @@ export default function Foto({ fil, alt, prioritet, tone }: { fil: string; alt: 
       </span>
     );
   }
+  const srcSet = fotoSrcSet(src);
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} loading={prioritet ? "eager" : "lazy"} fetchPriority={prioritet ? "high" : undefined} decoding="async" />
+    <img
+      src={src}
+      srcSet={srcSet}
+      sizes={srcSet ? (sizes ?? "(max-width: 760px) 92vw, 45vw") : undefined}
+      alt={alt}
+      loading={prioritet ? "eager" : "lazy"}
+      fetchPriority={prioritet ? "high" : undefined}
+      decoding="async"
+    />
   );
 }

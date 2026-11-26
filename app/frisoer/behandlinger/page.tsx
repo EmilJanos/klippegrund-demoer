@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Sidehoved from "@/components/frisoer/Sidehoved";
 import Afslutning from "@/components/frisoer/Afslutning";
-import Foto, { fotoSti, medieSti } from "@/components/frisoer/Foto";
+import Foto, { fotoSrcSet, fotoSti, medieSti } from "@/components/frisoer/Foto";
 import HeroVideo from "@/components/frisoer/HeroVideo";
 import Ikon from "@/components/frisoer/Ikon";
 import { behandlinger, prisliste, prisnote } from "@/lib/frisoer";
@@ -11,10 +11,15 @@ export const metadata: Metadata = { title: "Behandlinger & priser" };
 
 export default function Behandlinger() {
   const flaske = medieSti("produkt-olie.mp4");
+  const olieFoto = fotoSti("produkt-olie.jpg");
   return (
     <main id="indhold">
-      <Sidehoved overlinje="Behandlinger & priser" titel="Faste priser, _ingen_ overraskelser" tekst="Alle priser er med vask, føn og en kop kaffe. Er du i tvivl om, hvad du skal vælge, så book en gratis samtale på 15 minutter."
-        medie={flaske ? <HeroVideo src={flaske} plakat={fotoSti("produkt-olie.jpg") ?? undefined} /> : <Foto fil="produkt-olie.jpg" alt="Hårolie fra plejeserien Prisme Care" prioritet />}
+      <Sidehoved
+        medieVenstre
+        overlinje="Behandlinger & priser"
+        titel="Faste priser, _ingen_ overraskelser"
+        tekst="Alle priser er med vask, føn og en kop kaffe. Er du i tvivl om, hvad du skal vælge, så book en gratis samtale på 15 minutter."
+        medie={flaske ? <HeroVideo src={flaske} plakat={olieFoto ?? undefined} plakatSrcSet={olieFoto ? fotoSrcSet(olieFoto) : undefined} plakatSizes="(max-width: 760px) 70vw, 340px" prioritet /> : <Foto fil="produkt-olie.jpg" alt="Hårolie fra plejeserien Prisme Care" prioritet />}
       />
 
       <nav className="fr-indhold fr-hop" aria-label="Spring til behandling">
@@ -28,8 +33,8 @@ export default function Behandlinger() {
       <div className="fr-indhold fr-prisliste">
         {prisliste.map((g, n) => (
           <section key={g.id} id={g.id} className="fr-prisgruppe" data-vis>
-            <div className="fr-billede fr-form-blad">
-              <Foto fil={behandlinger[n].fil} alt="" />
+            <div className={`fr-billede fr-form-blad fr-pris-foto-${g.id}`}>
+              <Foto fil={behandlinger[n].fil} alt="" sizes="(max-width: 760px) 92vw, 30vw" />
             </div>
             <div className="fr-glas fr-prisgruppe-kort" data-lys>
               <h2>{g.navn}</h2>
