@@ -19,7 +19,15 @@ export default function Behandlinger() {
         overlinje="Behandlinger & priser"
         titel="Faste priser, _ingen_ overraskelser"
         tekst="Alle priser er med vask, føn og en kop kaffe. Er du i tvivl om, hvad du skal vælge, så book en gratis samtale på 15 minutter."
-        medie={flaske ? <HeroVideo src={flaske} plakat={olieFoto ?? undefined} plakatSrcSet={olieFoto ? fotoSrcSet(olieFoto) : undefined} plakatSizes="(max-width: 760px) 70vw, 340px" prioritet /> : <Foto fil="produkt-olie.jpg" alt="Hårolie fra plejeserien Prisme Care" prioritet />}
+        medie={
+          flaske ? (
+            <div className="fr-flaske">
+              <HeroVideo src={flaske} plakat={olieFoto ?? undefined} plakatSrcSet={olieFoto ? fotoSrcSet(olieFoto) : undefined} plakatSizes="(max-width: 760px) 70vw, 340px" prioritet />
+            </div>
+          ) : (
+            <Foto fil="produkt-olie.jpg" alt="Hårolie fra plejeserien Prisme Care" prioritet />
+          )
+        }
       />
 
       <nav className="fr-indhold fr-hop" aria-label="Spring til behandling">

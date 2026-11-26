@@ -2708,9 +2708,20 @@ body:has(.fr) {
   inset: 0;
 }
 
-/* Olie-videoen har sort baggrund. Med "screen" bliver det sorte gennemsigtigt, så sidens mønster
-   ses bag flasken på alle skærme og hele vejen, mens man ruller (Emil 26. nov.). */
-.fr-sidehoved-flade :is(video, img) {
-  mix-blend-mode: screen;
-  filter: contrast(1.1);
+/* Olie-videoen har sort baggrund. Flasken er klippet fri med en maske i flaskens form
+   (produkt-olie-maske.webp, samme 4:5-udsnit som videoen), så sidens mønster ses rundt om flasken,
+   mens hætte, mærkat og glas er helt tætte. Startbilledet skjules, når videoen er tonet frem,
+   så det ikke kan ses bag den drejende flaske (Emil 26. nov.). */
+.fr-sidehoved-flade .fr-flaske :is(video, img) {
+  -webkit-mask-image: url("/frisoer/billeder/produkt-olie-maske.webp");
+  mask-image: url("/frisoer/billeder/produkt-olie-maske.webp");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.fr-sidehoved-flade .fr-flaske img:has(+ .fr-video.er-klar) {
+  visibility: hidden;
+  transition: visibility 0s 0.8s;
 }
