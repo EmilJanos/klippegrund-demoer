@@ -2891,3 +2891,40 @@ body:has(.fr) {
 .fr-pris-foto-klip > img {
   object-position: 50% 0;
 }
+
+/* ---------- Læsbarhed (Emil 26. nov.) ----------
+   Teksten var for lille og svær at læse oven på det lyse prikmønster.
+   Al tekst på frisør-demoen er gjort 12,5 % større (alle størrelser står i rem,
+   så det styres ét sted), brødteksten er lysere, og tekst, der står direkte
+   på baggrunden, har fået en blød mørk skygge. */
+html:has(.fr) {
+  font-size: 112.5%;
+}
+
+.fr {
+  --tekst-2: #e4dccf;
+  --daempet: #bbb2a4;
+}
+
+.fr-brod,
+.fr-flueben li,
+.fr-punkter li {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 14px rgba(0, 0, 0, 0.75);
+}
+
+/* Alt større på PC (Emil 26. nov.): hele demoen skaleres 12 % op på brede skærme,
+   så tekst, billeder og felter vokser sammen. På mobil fylder billederne allerede
+   hele bredden, så der vokser kun teksten (reglen ovenfor). */
+@media (min-width: 1101px) {
+  html:has(.fr) {
+    font-size: 100%;
+  }
+  .fr {
+    zoom: 1.12;
+  }
+}
+
+/* Før/Efter er gjort en del større (Emil 26. nov.) */
+.fr-skyder-ramme {
+  width: min(100%, 620px);
+}
