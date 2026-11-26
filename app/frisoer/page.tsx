@@ -3,6 +3,7 @@ import { preload } from "react-dom";
 import Foto, { fotoSrcSet, fotoSti, medieSti } from "@/components/frisoer/Foto";
 import Ikon from "@/components/frisoer/Ikon";
 import { Kursiv } from "@/components/frisoer/Tekst";
+import BaandTraek from "@/components/frisoer/BaandTraek";
 import Farveskyder from "@/components/frisoer/Farveskyder";
 import Gavekort from "@/components/frisoer/Gavekort";
 import HeroVideo from "@/components/frisoer/HeroVideo";
@@ -158,7 +159,7 @@ export default function Forside() {
         </div>
       </section>
 
-      {/* Galleri: to rækker, der glider hver sin vej. Hver række står der fire gange, så båndet altid fylder skærmen. */}
+      {/* Galleri: to rækker, der glider hver sin vej og kan trækkes med finger eller mus (BaandTraek). Hver række står der fire gange, så båndet altid fylder skærmen. */}
       <section className="fr-sektion fr-galleri" aria-label="Billeder fra salonen">
         <div className="fr-indhold fr-sektion-top" data-vis>
           <div>
@@ -254,6 +255,9 @@ export default function Forside() {
           </ul>
         </div>
       </section>
+
+      {/* Gør båndene (galleri og udtalelser) til at trække i */}
+      <BaandTraek />
 
       {/* Afslutning */}
       <section className="fr-indhold fr-sektion-bund">

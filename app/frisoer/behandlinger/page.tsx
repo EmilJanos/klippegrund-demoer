@@ -19,7 +19,7 @@ export default function Behandlinger() {
         overlinje="Behandlinger & priser"
         titel="Erfaring, du kan _mærke_"
         underrubrik="Personlig service og et resultat, der taler for sig selv."
-        tekst="Alle priser er med vask, føn og gratis kaffe. Er du i tvivl om, hvad du skal vælge, så book en uforpligtende samtale på 15 minutter."
+        tekst={"Alle priser er med vask, føn og gratis kaffe.\nEr du i tvivl om, hvad du skal vælge, så book en uforpligtende samtale på 15 minutter."}
         medie={
           flaske ? (
             <div className="fr-flaske">
