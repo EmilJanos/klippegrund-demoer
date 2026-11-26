@@ -10,34 +10,56 @@ import { team, teamTekst } from "@/lib/frisoer";
 export const metadata: Metadata = { title: "Team" };
 
 export default function Team() {
+  const kort = (t: (typeof team)[number], i: number) => (
+    <li key={t.id} data-vis style={{ ["--i" as string]: i }}>
+      <Link href={`/frisoer/book?frisoer=${t.id}`} className="fr-teamkort fr-glas" data-lys>
+        {/* Eleverne står uden foto (Emil 26. nov.) */}
+        {!t.elev && (
+          <span className="fr-billede">
+            <Foto fil={t.fil} alt={`Portræt af ${t.navn}`} sizes="(max-width: 760px) 92vw, 25vw" />
+          </span>
+        )}
+        <span className="fr-teamkort-tekst">
+          <strong>{t.navn}</strong>
+          <span className="fr-teamkort-rolle">{t.rolle}</span>
+          <span>{t.tekst}</span>
+          <span className="fr-maerker">
+            {t.fag.map((f) => (
+              <span key={f}>{f}</span>
+            ))}
+          </span>
+          <span className="fr-kort-fra">
+            Book hos {t.navn.split(" ")[0]} <Ikon navn="pil" size={15} />
+          </span>
+        </span>
+      </Link>
+    </li>
+  );
+
   return (
     <main id="indhold">
       <Sidehoved overlinje={teamTekst.overlinje} titel={teamTekst.titel} tekst={teamTekst.tekst} />
 
       <ul className="fr-indhold fr-team">
-        {team.map((t, i) => (
-          <li key={t.id} data-vis style={{ ["--i" as string]: i }}>
-            <Link href={`/frisoer/book?frisoer=${t.id}`} className="fr-teamkort fr-glas" data-lys>
-              <span className="fr-billede">
-                <Foto fil={t.fil} alt={`Portræt af ${t.navn}`} sizes="(max-width: 760px) 92vw, 25vw" />
-              </span>
-              <span className="fr-teamkort-tekst">
-                <strong>{t.navn}</strong>
-                <span className="fr-teamkort-rolle">{t.rolle}</span>
-                <span>{t.tekst}</span>
-                <span className="fr-maerker">
-                  {t.fag.map((f) => (
-                    <span key={f}>{f}</span>
-                  ))}
-                </span>
-                <span className="fr-kort-fra">
-                  Book hos {t.navn.split(" ")[0]} <Ikon navn="pil" size={15} />
-                </span>
-              </span>
-            </Link>
-          </li>
-        ))}
+        {team.filter((t) => !t.elev).map(kort)}
       </ul>
+
+      {/* Eleverne står for sig selv og kan kun bookes til elevbehandlingerne */}
+      <section className="fr-sektion fr-indhold">
+        <div className="fr-sektion-top" data-vis>
+          <div>
+            <p className="fr-overlinje">{teamTekst.elever.overlinje}</p>
+            <h2>
+              <Kursiv tekst={teamTekst.elever.titel} />
+            </h2>
+            <p className="fr-brod">{teamTekst.elever.tekst}</p>
+          </div>
+          <Link href="/frisoer/behandlinger#elev" className="fr-knap fr-knap-kant fr-knap-lille">
+            Se elevpriser <Ikon navn="pil" size={16} />
+          </Link>
+        </div>
+        <ul className="fr-team fr-team-elever">{team.filter((t) => t.elev).map(kort)}</ul>
+      </section>
 
       {/* Billedformen Ringe: fotoet ligger i ringe, der breder sig ud fra midten */}
       <section className="fr-sektion fr-indhold fr-delt">

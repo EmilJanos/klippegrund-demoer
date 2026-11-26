@@ -2840,3 +2840,49 @@ body:has(.fr) {
 .fr-skyder-ramme .fr-skyder-maerke-h {
   right: 5%;
 }
+
+/* ---------- Elever (Emil 26. nov.) ---------- */
+
+/* Elevbehandlingerne har ikke foto, så kortet fylder hele bredden */
+.fr .fr-prisgruppe.fr-prisgruppe-bred {
+  grid-template-columns: 1fr;
+}
+
+.fr-elevnote {
+  max-width: 62ch;
+  margin: 12px 0 6px;
+  color: var(--tekst-2);
+  font-size: 0.95rem;
+}
+
+/* Normalprisen står overstreget foran elevprisen */
+.fr-pris-normal {
+  margin-right: 10px;
+  color: var(--daempet);
+  font: 400 0.82rem/1 var(--brod);
+  text-decoration-thickness: 1px;
+}
+
+/* De to elever på Team står uden foto: to rene tekstkort ved siden af hinanden (ét under hinanden på mobil) */
+.fr .fr-team.fr-team-elever {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.fr .fr-team.fr-team-elever li {
+  grid-column: auto;
+}
+
+.fr .fr-team.fr-team-elever .fr-teamkort {
+  grid-template-rows: none;
+  grid-template-columns: none;
+}
+
+.fr .fr-team.fr-team-elever .fr-teamkort-tekst {
+  padding: clamp(22px, 3vw, 34px);
+}
+
+@media (max-width: 760px) {
+  .fr .fr-team.fr-team-elever {
+    grid-template-columns: 1fr;
+  }
+}
