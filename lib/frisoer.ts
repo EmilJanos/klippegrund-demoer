@@ -27,7 +27,7 @@ export const hero = {
 export const tal = [
   { ikon: "krone", tal: 12, efter: "", tekst: "år i Klostergade" },
   { ikon: "kunder", tal: 18000, efter: "+", tekst: "klip og farver" },
-  { ikon: "saks", tal: 8, efter: "", tekst: "uddannede frisører" },
+  { ikon: "saks", tal: 5, efter: "", tekst: "frisører og 2 elever" },
   { ikon: "blad", tal: 100, efter: " %", tekst: "veganske produkter" },
 ] as const;
 
@@ -59,7 +59,7 @@ export const galleri = Array.from({ length: 12 }, (_, i) => `galleri-${i + 1}.jp
 export const om = {
   overlinje: "Om salonen",
   titel: "Ro, tid og _hænder_, der kan deres fag",
-  tekst: "Vi åbnede i Klostergade i 2014 med én stol og en idé om, at et frisørbesøg skal være dagens rolige time. I dag er vi otte, og idéen er den samme.",
+  tekst: "Vi åbnede i Klostergade i 2014 med én stol og en idé om, at et frisørbesøg skal være dagens rolige time. I dag er vi syv, og idéen er den samme.",
   punkter: [
     { ikon: "samtale", tekst: "Vi starter altid med en snak" },
     { ikon: "blad", tekst: "Veganske produkter" },
@@ -146,24 +146,42 @@ export const prisliste = [
       { navn: "Fade", tid: 40, pris: 445 },
     ],
   },
+  {
+    // Kun eleverne laver disse, og eleverne laver kun disse (se Booking.tsx). "normal" er prisen hos en uddannet frisør.
+    id: "elev",
+    navn: "Elevbehandlinger",
+    ikon: "hjerte",
+    punkter: [
+      { navn: "Dameklip hos elev", tid: 75, pris: 395, normal: 595 },
+      { navn: "Herreklip hos elev", tid: 45, pris: 275, normal: 395 },
+      { navn: "Bundfarve hos elev", tid: 90, pris: 595, normal: 895 },
+      { navn: "Fugtkur hos elev", tid: 30, pris: 195, normal: 295 },
+    ],
+  },
 ] as const;
+
+export const elevGruppe = "elev";
+export const elevnote = "Vores to elever klipper og farver til elevpris. En uddannet frisør ser med hele vejen, så sæt lidt ekstra tid af.";
 
 export const prisnote = "Priserne er vejledende. Langt eller meget tykt hår kan koste lidt mere. Det aftaler vi, før vi går i gang.";
 
 // ---------- Team ----------
 
-export const team = [
+export const team: { id: string; fil: string; navn: string; rolle: string; tekst: string; fag: string[]; elev?: boolean }[] = [
   { id: "maja", fil: "team-1.jpg", navn: "Maja Lindgaard", rolle: "Indehaver og frisør", tekst: "Åbnede salonen i 2014 og har klippet i 18 år. Rolig hånd og et skarpt øje for, hvad der klæder et ansigt.", fag: ["Korte klip", "Bob", "Bryllup"] },
   { id: "jacob", fil: "team-2.jpg", navn: "Jacob Krogh", rolle: "Frisør og barber", tekst: "Uddannet barber fra København. Går op i rene linjer og et skæg, der passer til ansigtet.", fag: ["Fade", "Skæg", "Herreklip"] },
   { id: "freja", fil: "team-3.jpg", navn: "Freja Holm", rolle: "Farvespecialist", tekst: "Har taget farvekurser i London og laver salonens fleste balayager. Ærlig om, hvad dit hår kan holde til.", fag: ["Balayage", "Blonde nuancer", "Farveretning"] },
   { id: "ida", fil: "team-4.jpg", navn: "Ida Rask", rolle: "Frisør", tekst: "Specialist i krøller og bølger. Lærer dig at sætte håret selv, så det også sidder derhjemme.", fag: ["Krøller", "Tørklip", "Pleje"] },
   { id: "noah", fil: "team-5.jpg", navn: "Noah Bach", rolle: "Frisør og stylist", tekst: "Kommer fra modeshows og fotooptagelser. Ham du skal have, når håret skal sættes op til en stor dag.", fag: ["Opsætning", "Langt hår", "Styling"] },
+  { id: "alma", fil: "team-6.jpg", elev: true, navn: "Alma Winther", rolle: "Elev på 2. år", tekst: "Går på frisørskolen i Aarhus og er i salonen tre dage om ugen. Grundig med saksen og god til at spørge, før hun klipper.", fag: ["Dameklip", "Føn", "Fugtkur"] },
+  { id: "liam", fil: "team-7.jpg", elev: true, navn: "Liam Coren", rolle: "Elev på 3. år", tekst: "Kom til Aarhus fra Manchester og er næsten udlært. Farve er hans yndlingsfag, og herreklip sidder allerede på rygraden.", fag: ["Herreklip", "Bundfarve", "Dameklip"] },
 ];
 
 export const teamTekst = {
   overlinje: "Team",
   titel: "Mød dem, der står bag _stolen_",
-  tekst: "Otte frisører med hver deres speciale. Her er fem af dem. Du vælger selv, hvem du vil klippes af, når du booker.",
+  tekst: "Fem frisører med hver deres speciale og to elever, der er godt på vej. Du vælger selv, hvem du vil klippes af, når du booker.",
+  elever: { overlinje: "Elever", titel: "Næste _generation_", tekst: "Alma og Liam er under uddannelse hos os. Du kan booke udvalgte behandlinger hos dem til elevpris, og en uddannet frisør ser altid med." },
   ringe: { overlinje: "Håndværket", titel: "Vi bliver ved med at _øve_ os", tekst: "Hele teamet er på kursus fire gange om året, og hver mandag morgen øver vi nye teknikker på hinanden. Så ved vi, at det virker, før du sætter dig i stolen." },
 };
 

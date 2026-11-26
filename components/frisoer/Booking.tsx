@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Ikon from "./Ikon";
-import { prisliste, team, tider } from "@/lib/frisoer";
+import { elevGruppe, prisliste, team, tider } from "@/lib/frisoer";
 
 // Booking i fire trin. Det ligner en rigtig booking, men intet sendes eller gemmes: det er en demo.
 // Valgene ligger kun i browserens hukommelse, mens siden er åben.
@@ -43,13 +43,25 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
     const g = q.get("behandling");
     if (g && prisliste.some((p) => p.id === g)) setAabenGruppe(g);
     const f = q.get("frisoer");
-    if (f && team.some((t) => t.id === f)) setFrisoer(f);
+    const valgt = team.find((t) => t.id === f);
+    if (valgt) setFrisoer(valgt.id);
+    // Kommer man fra en elevs kort, åbner elevbehandlingerne, for det er dem, eleven kan bookes til
+    if (valgt?.elev) setAabenGruppe(elevGruppe);
   }, []);
 
   // Ikke alle tider er ledige: hvilke afhænger af dagen, så det ligner en rigtig kalender
   const optaget = useMemo(() => new Set(tider.filter((_, i) => dag !== null && (i * 7 + dag * 3) % 4 === 0)), [dag]);
 
-  const frisoerNavn = frisoer === "alle" ? "Første ledige" : team.find((t) => t.id === frisoer)?.navn;
+  // Elever laver kun elevbehandlinger, og elevbehandlinger laves kun af elever
+  const elevValgt = behandling?.gruppe === elevGruppe;
+  const mulige = team.map((t, i) => ({ t, i })).filter(({ t }) => Boolean(t.elev) === elevValgt);
+  const vaelgBehandling = (v: Valg) => {
+    setBehandling(v);
+    const f = team.find((t) => t.id === frisoer);
+    if (f && Boolean(f.elev) !== (v.gruppe === elevGruppe)) setFrisoer(null);
+  };
+
+  const frisoerNavn = frisoer === "alle" ? (elevValgt ? "Første ledige elev" : "Første ledige") : team.find((t) => t.id === frisoer)?.navn;
   const dagTekst = dag !== null && dage[dag] ? `${dagNavne[dage[dag].getDay()]}. ${dage[dag].getDate()}. ${maaneder[dage[dag].getMonth()]}` : null;
   const klar = [behandling !== null, frisoer !== null, dag !== null && tid !== null, true][nu];
 
@@ -121,10 +133,13 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
                   .find((g) => g.id === aabenGruppe)
                   ?.punkter.map((p) => (
                     <label key={p.navn} className="fr-valg">
-                      <input type="radio" name="behandling" checked={behandling?.navn === p.navn} onChange={() => setBehandling({ gruppe: aabenGruppe, ...p })} />
+                      <input type="radio" name="behandling" checked={behandling?.navn === p.navn} onChange={() => vaelgBehandling({ gruppe: aabenGruppe, navn: p.navn, tid: p.tid, pris: p.pris })} />
                       <span className="fr-valg-navn">{p.navn}</span>
                       <span className="fr-valg-tid">{p.tid} min.</span>
-                      <span className="fr-valg-pris">{p.pris.toLocaleString("da-DK")} kr.</span>
+                      <span className="fr-valg-pris">
+                        {"normal" in p && <s className="fr-pris-normal">{p.normal.toLocaleString("da-DK")} kr.</s>}
+                        {p.pris.toLocaleString("da-DK")} kr.
+                      </span>
                     </label>
                   ))}
               </div>
@@ -133,7 +148,8 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
 
           {nu === 1 && (
             <fieldset>
-              <legend>Hvem vil du klippes af?</legend>
+              <legend>{elevValgt ? "Hvilken elev vil du have?" : "Hvem vil du klippes af?"}</legend>
+              {elevValgt && <p className="fr-elevnote">Elevbehandlinger laves af vores to elever. En uddannet frisør ser med hele vejen.</p>}
               <div className="fr-book-frisoerer">
                 <label className="fr-valg fr-valg-person">
                   <input type="radio" name="frisoer" checked={frisoer === "alle"} onChange={() => setFrisoer("alle")} />
@@ -141,12 +157,12 @@ export default function Booking({ portraetter = [] }: { portraetter?: React.Reac
                     <Ikon navn="kunder" size={22} />
                   </span>
                   <span className="fr-valg-persontekst">
-                    <span className="fr-valg-navn">Første ledige</span>
+                    <span className="fr-valg-navn">{elevValgt ? "Første ledige elev" : "Første ledige"}</span>
                     <span className="fr-valg-rolle">Flest tider</span>
-                    <span className="fr-valg-om">Vi finder den frisør, der passer bedst til din behandling og har tid først.</span>
+                    <span className="fr-valg-om">{elevValgt ? "Vi finder den elev, der har tid først." : "Vi finder den frisør, der passer bedst til din behandling og har tid først."}</span>
                   </span>
                 </label>
-                {team.map((t, i) => (
+                {mulige.map(({ t, i }) => (
                   <label key={t.id} className="fr-valg fr-valg-person">
                     <input type="radio" name="frisoer" checked={frisoer === t.id} onChange={() => setFrisoer(t.id)} />
                     <span className="fr-valg-rund">{portraetter[i] ?? t.navn.split(" ").map((d) => d[0]).join("")}</span>

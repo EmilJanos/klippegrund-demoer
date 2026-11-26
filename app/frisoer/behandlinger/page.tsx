@@ -5,7 +5,7 @@ import Afslutning from "@/components/frisoer/Afslutning";
 import Foto, { fotoSrcSet, fotoSti, medieSti } from "@/components/frisoer/Foto";
 import HeroVideo from "@/components/frisoer/HeroVideo";
 import Ikon from "@/components/frisoer/Ikon";
-import { behandlinger, prisliste, prisnote } from "@/lib/frisoer";
+import { behandlinger, elevGruppe, elevnote, prisliste, prisnote } from "@/lib/frisoer";
 
 export const metadata: Metadata = { title: "Behandlinger & priser" };
 
@@ -41,19 +41,31 @@ export default function Behandlinger() {
 
       <div className="fr-indhold fr-prisliste">
         {prisliste.map((g, n) => (
-          <section key={g.id} id={g.id} className="fr-prisgruppe" data-vis>
-            <div className={`fr-billede fr-form-blad fr-pris-foto-${g.id}`}>
-              <Foto fil={behandlinger[n].fil} alt="" sizes="(max-width: 760px) 92vw, 30vw" />
-            </div>
+          <section key={g.id} id={g.id} className={`fr-prisgruppe ${behandlinger[n] ? "" : "fr-prisgruppe-bred"}`} data-vis>
+            {/* Elevbehandlingerne har ikke deres eget foto og fylder hele bredden */}
+            {behandlinger[n] && (
+              <div className={`fr-billede fr-form-blad fr-pris-foto-${g.id}`}>
+                <Foto fil={behandlinger[n].fil} alt="" sizes="(max-width: 760px) 92vw, 30vw" />
+              </div>
+            )}
             <div className="fr-glas fr-prisgruppe-kort" data-lys>
               <h2>{g.navn}</h2>
+              {g.id === elevGruppe && <p className="fr-elevnote">{elevnote}</p>}
               <ul>
                 {g.punkter.map((p) => (
                   <li key={p.navn}>
                     <span className="fr-pris-navn">{p.navn}</span>
                     <span className="fr-pris-tid">{p.tid} min.</span>
                     <span className="fr-pris-prik" aria-hidden="true" />
-                    <span className="fr-pris-kr">{p.pris.toLocaleString("da-DK")} kr.</span>
+                    <span className="fr-pris-kr">
+                      {"normal" in p && (
+                        <s className="fr-pris-normal">
+                          <span className="fr-skjult">Normalpris </span>
+                          {p.normal.toLocaleString("da-DK")} kr.
+                        </s>
+                      )}
+                      {p.pris.toLocaleString("da-DK")} kr.
+                    </span>
                   </li>
                 ))}
               </ul>
