@@ -62,7 +62,7 @@ export default function Ydelser() {
                 </li>
               ))}
             </ul>
-            <div className="tm-billede tm-ogsaa-foto tm-form-hoevlspaan-liggende" data-vis>
+            <div className="tm-billede tm-ogsaa-foto tm-form-hoevlspaan" data-vis>
               <Foto fil="vaerksted.jpg" alt="Værkstedet med maskiner og stablet træ" />
             </div>
           </div>

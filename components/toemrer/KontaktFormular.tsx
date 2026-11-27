@@ -11,6 +11,23 @@ export default function KontaktFormular({ emner, forvalgt }: { emner: string[]; 
   const [emne, setEmne] = useState(forvalgt && emner.includes(forvalgt) ? forvalgt : emner[0]);
   const [fejl, setFejl] = useState<Fejl>({});
   const [sendt, setSendt] = useState(false);
+  // Formularen er foldet sammen til en lille knap (Emil 27. nov.). Kommer man med et emne fra Ydelser, står den åben.
+  const [aaben, setAaben] = useState(!!forvalgt);
+
+  if (!aaben) {
+    return (
+      <button type="button" className="tm-formular-aabn" aria-expanded={false} aria-controls="tm-formular" onClick={() => setAaben(true)}>
+        <span className="tm-formular-aabn-ikon">
+          <Ikon navn="mail" size={20} />
+        </span>
+        <span>
+          <strong>Skriv til os</strong>
+          <span>Svar senest næste hverdag</span>
+        </span>
+        <span className="tm-formular-aabn-plus" aria-hidden="true">+</span>
+      </button>
+    );
+  }
 
   function send(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,7 +63,7 @@ export default function KontaktFormular({ emner, forvalgt }: { emner: string[]; 
   }
 
   return (
-    <form className="tm-formular" noValidate onSubmit={send}>
+    <form id="tm-formular" className="tm-formular tm-formular-ud" noValidate onSubmit={send}>
       <fieldset className="tm-emner">
         <legend>Hvad drejer det sig om?</legend>
         <div>

@@ -2199,3 +2199,76 @@ main:not(:has(.tm-afslutning)) + .tm-footer .tm-footer-gitter {
 .tm main:focus {
   outline: none;
 }
+
+/* Kontaktformularen er foldet sammen til en lille knap og foldes ud ved klik (Emil 27. nov.) */
+.tm-formular-aabn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 22px;
+  border: 1px solid var(--linje);
+  border-radius: var(--radius-stor);
+  background: var(--hvid);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.tm-formular-aabn:hover {
+  border-color: var(--eg);
+  transform: translateY(-2px);
+}
+
+.tm-formular-aabn-ikon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--moerk);
+  color: var(--papir);
+}
+
+.tm-formular-aabn > span:nth-child(2) {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+}
+
+.tm-formular-aabn strong {
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.tm-formular-aabn > span:nth-child(2) > span {
+  font-size: 0.875rem;
+  color: var(--daempet);
+}
+
+.tm-formular-aabn-plus {
+  flex: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.tm-formular-ud {
+  animation: tm-fold-ud 0.35s ease-out;
+}
+
+@keyframes tm-fold-ud {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-formular-ud {
+    animation: none;
+  }
+}
